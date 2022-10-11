@@ -14,4 +14,4 @@ print_dic(d)
 
 d["status"] = input("\n\nChange le status:  ")
 
-print_dic(list(d))
+print_dic(d)
