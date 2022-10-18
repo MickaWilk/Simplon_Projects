@@ -37,5 +37,5 @@ print (sum(1 for i in range(len(game_answers)) if game_answers[i] == pauline_ans
 def evaluate_matching_between(game_answers, student_answers):
 
   return sum(1 for i in range(len(game_answers)) if game_answers[i] == student_answers[i])
-  
+
 print(evaluate_matching_between(game_answers, pauline_answers))

@@ -1,0 +1,18 @@
+from cgitb import html
+from bs4 import BeautifulSoup as bs
+import pandas as pd
+import requests
+
+
+page = requests.get(f"https://docs.google.com/spreadsheets/d/1vaGtxoo1UcCmslSK0PiE24x2_pKvS61zDEbwCQ0UuVE/edit#gid=0")
+soup = bs(page, 'lxml')
+tables = soup.find_all("table")
+print(soup.find_all("table"))
+index = 0
+for table in tables:
+    print(table.find_all("tr"))
+    # with open(str(index) + ".csv", "w") as f:
+        # wr = csv.writer(f, quoting=csv.QUOTE_NONNUMERIC)
+        # wr.writerows([[td.text for td in row.find_all("td")] for row in table.find_all("tr")])
+    # print([[td.text for td in row.find_all("td")] for row in table.find_all("tr")])
+    index = index + 1
