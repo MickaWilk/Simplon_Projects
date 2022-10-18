@@ -3,7 +3,6 @@ import pandas as pd
 import requests
 
 df = pd.read_csv('akinatorIA3.csv', usecols=["Film préféré"])
-print(df.values.tolist())
 for i in df.values.tolist():
     page = requests.get(f"https://www.imdb.com/find?q={str(i)}")
     soup = bs(page.content, 'html.parser')
