@@ -74,44 +74,103 @@ WHERE name = 'Rock'
 
 
 -- Query 15 : List titles of songs whose genre description uses the word ’afric’. (line count: 334)
-
+SELECT Title
+FROM Song
+JOIN Genre as g ON g.id = Song.Genre_ID
+WHERE Description LIKE '%afric%'
 
 
 -- Query 16 : Find the number of folk songs whose lyrics are not covered by copyright. (the answer is 124) (line
 count: 1)
+SELECT count(name)
+FROM Song
+JOIN Genre as g ON g.id = Song.Genre_ID
+WHERE g.Name = 'Folk' AND Free_lyrics = True
 
 -- Query 17 : Find song titles written by Jacques Brel. (line count: 134)
+SELECT s.Title
+FROM Song as s
+JOIN Written as w ON w.Song_ID =  s.ID
+JOIN Artist as a ON a.ID = w.Artist_ID
+WHERE a.Name = 'Jacques Brel'
 
 -- Query 18 : Find artists who have written the song ’Anybody Seen My Baby?’. (line count: 2)
+SELECT a.Name
+FROM Song as s
+JOIN Written as w ON w.Song_ID =  s.ID
+JOIN Artist as a ON a.ID = w.Artist_ID
+WHERE s.Title = 'Anybody Seen My Baby?'
 
 -- Query 19 : find the number of CDs with songs written by Mick Jagger. (the answer is 54) (line count: 1)
-
+SELECT count(DISTINCT l.CDDB)
+FROM Listing as l
+JOIN Written as w ON w.Song_ID =  l.Song_ID
+JOIN Artist as a ON w.Artist_ID = a.ID
+WHERE a.Name = 'Mick Jagger'
 
 /* Become now harder */
 /*Si vous avez des requêtes imbriquées, il faut utiliser un WITH ! */
 
 -- Query 20 : Find the song list on the CD A Night at the Opera, in the order of their position. (line count: 12)
+SELECT l.pos, s.Title
+FROM Listing as l
+JOIN Disc as d ON d.CDDB = l.CDDB
+JOIN Song as s ON s.ID = l.Song_ID
+WHERE d.Title = 'A Night at the Opera'
+ORDER BY l.Pos
 
 -- Query 21 : Find name of srtists who have not written a single song. (line count: 506)
+SELECT a.Name
+From Artist as a
+WHERE a.ID NOT IN (SELECT Artist_ID FROM Written)
 
 -- Query 22 : List songs performed by Lenny Kravitz that are present on David Bowie’s CDs. (line count: 1)
+SELECT s.Title FROM Song as s
+JOIN Listing as l ON l.Song_ID = s.ID
+JOIN Artist as a ON l.Artist_ID = a.ID
+WHERE a.Name = 'Lenny Kravitz' AND l.CDDB IN (SELECT d.CDDB FROM Disc as d
+                                              JOIN Artist as a ON a.ID = d.Artist_ID
+											                        WHERE a.Name = 'David Bowie')
 
 -- Query 23 : Find CDs that contain at least one song performed by an artist different from the (main) artist of the
 -- disc. (line count: 37)
+SELECT DISTINCT l.CDDB FROM Song as s
+JOIN Listing as l ON l.Song_ID = s.ID
+JOIN Artist as a ON l.Artist_ID = a.ID
+WHERE a.Name NOT IN (SELECT DISTINCT a.name FROM Disc as d JOIN Artist as a ON a.ID = d.Artist_ID)
+
 
 -- Query 24 : Find CDs that contain at least one song written by an artist different from the (main) artist of the
 -- CD. (line count: 83)
+SELECT DISTINCT d.CDDB FROM Disc as d
+JOIN Written as w ON w.Song_ID = l.song_ID
+JOIN Listing as l ON l.CDDB = d.CDDB
+WHERE w.Artist_ID != d.Artist_ID
+
 
 -- Query 25 : List the number and the average price of CD for every different state. (line count: 4)
+SELECT d.State, count(State), AVG(price) FROM Disc as d
+GROUP BY State
+
 
 -- Query 26 : For every artist find the number of their CDs. Display the results in the descending order of the
 -- number of CDs (line count: 273)
+SELECT d.Artist_ID, count(DISTINCT CDDB) as nb FROM Disc as d
+GROUP BY d.Artist_ID
+ORDER BY nb DESC
 
 -- Query 27 : For every CD list its title and the number of songs it contains. display only CD with at least 10 songs
 -- (line count: 688)
+SELECT DISTINCT d.CDDB, Title, count(l.Song_ID) as nb_songs FROM Disc as d
+JOIN Listing as l ON l.CDDB = d.CDDB
+GROUP BY l.CDDB
+HAVING nb_songs >= 10
+
 
 -- Query 28 : For every genre find the number of CDs that contain a song of this genre. Mind not to count the
 -- same CD more than once. Display genres with more than 50 songs (line count: 4)
+
+
 
 -- Query 29 : List the artists in the descending order of the average price of their CDs. List only those artists who
 -- have at least 4 CDs for which the average CD price is above 12. (line count: 61)
