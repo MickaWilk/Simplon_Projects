@@ -155,8 +155,9 @@ GROUP BY State
 
 -- Query 26 : For every artist find the number of their CDs. Display the results in the descending order of the
 -- number of CDs (line count: 273)
-SELECT d.Artist_ID, count(DISTINCT CDDB) as nb FROM Disc as d
-GROUP BY d.Artist_ID
+SELECT a.name, count(DISTINCT CDDB) as nb FROM Disc as d
+JOIN Artist as a ON a.ID = d.Artist_ID
+GROUP BY a.name
 ORDER BY nb DESC
 
 -- Query 27 : For every CD list its title and the number of songs it contains. display only CD with at least 10 songs
@@ -169,11 +170,22 @@ HAVING nb_songs >= 10
 
 -- Query 28 : For every genre find the number of CDs that contain a song of this genre. Mind not to count the
 -- same CD more than once. Display genres with more than 50 songs (line count: 4)
-
+SELECT g.Name, count(DISTINCT l.CDDB) nb_songs
+FROM genre as g
+JOIN song as s ON s.Genre_ID = g.ID
+JOIN Listing as l ON s.ID = l.Song_ID
+Group BY g.name
+HAVING nb_songs >= 50
 
 
 -- Query 29 : List the artists in the descending order of the average price of their CDs. List only those artists who
 -- have at least 4 CDs for which the average CD price is above 12. (line count: 61)
+SELECT a.name, AVG(price) as price_avg, count(DISTINCT d.CDDB) as nb_cds
+FROM Disc as d
+JOIN Artist as a ON a.ID = d.Artist_ID
+Group BY a.Name
+HAVING nb_cds >= 4
+ORDER BY price_avg DESC
 
 
 /* Questions Bonus (Optionnelles) */
