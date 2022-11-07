@@ -192,7 +192,16 @@ ORDER BY price_avg DESC
 
 -- Query 30 : Find CD whose list of songs is potentially incomplete. (Hint: compare the number of songs with
 -- the position of the last song). (line count: 24)
+SELECT l.CDDB, MAX(l.pos) as max_pos, count(l.song_ID) as nb_songs
+FROM Listing as l
+Group BY CDDB
+HAVING l.pos != nb_songs
 
 -- Query 31 : Find frequent collaborators. Any pair of artists who have performed a song on the same CD are
 -- collaborators. If there are at least 2 CDs, then this pair are frequent collaborators. (there is only 5 such pairs)
 -- (line count: 10)
+SELECT l.CDDB, a.name,
+(SELECT d.CDDB FROM Disc as d JOIN Artist as a ON a.ID = d.Artist_ID)
+FROM Listing as l
+JOIN Artist as a ON a.ID = l.Artist_ID
+Group BY l.CDDB
