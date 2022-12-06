@@ -1,0 +1,10 @@
+requirements.txt
+setup.py
+ml_project/__init__.py
+mon_packet.egg-info/PKG-INFO
+mon_packet.egg-info/SOURCES.txt
+mon_packet.egg-info/dependency_links.txt
+mon_packet.egg-info/top_level.txt
+scripts/hello
+scripts/salem
+scripts/start_project
