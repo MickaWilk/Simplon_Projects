@@ -1,0 +1,33 @@
+#!python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+
+#os.system(project_name = input("project name to create ? : "))
+project_name = sys.argv[1]
+
+message = f'''from setuptools import setup
+from setuptools import find_packages
+
+with open('requirements.txt') as f:
+    content = f.readlines()
+    requirements = [x.strip() for x in content if 'git+' not in x]
+
+setup(
+    name='{project_name}',
+    version='0.0.0.1',
+    packages=find_packages(),
+    description="Creation automatisé d'une architecture ML",
+    author=...,
+    author_email='...',
+    scripts=['scripts/run_{project_name}'],
+    # package_data={{
+    #     "": ["*.joblib"],
+    # }},
+    # include_package_data=True,
+    install_requires=requirements
+)'''
+
+os.system(f"mkdir -p {project_name}")
+os.system(f"echo {message} > {project_name}/hello_world.py")

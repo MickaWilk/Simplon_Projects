@@ -1,0 +1,17 @@
+#!python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+
+#os.system(project_name = input("project name to create ? : "))
+project_name = sys.argv[1]
+
+os.system(f"mkdir {project_name}")
+os.system(f"touch {project_name}/requirements.txt")
+os.system(f"touch {project_name}/setup.py")
+os.system(f"mkdir -p '{project_name}/notebooks/data'")
+os.system(f"touch {project_name}/init.py")
+os.system(f"mkdir {project_name}/scripts")
+os.system(f"touch {project_name}/scripts/start_project.py")
+print(sys.argv)

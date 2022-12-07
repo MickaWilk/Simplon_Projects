@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+
+#os.system(project_name = input("project name to create ? : "))
+project_name = sys.argv[1]
+
+message = f"def"
+
+os.system(f"mkdir -p {project_name}")
+os.system(f"echo {message} > {project_name}/hello_world.py")
