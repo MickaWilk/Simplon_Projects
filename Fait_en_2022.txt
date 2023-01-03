@@ -1,0 +1,26 @@
+Blason
+Fresque
+
+Codewars
+Python
+
+Pandas
+Numpy
+
+Scrapping
+Cleaning
+
+API
+Pickle
+Reg Lin
+
+Azure
+
+Créer un modèle, utiliser la donnée dans la vie, créer des scripts
+
+Je vais participer à la continuité de la conception de MS Azure et de l'organisation de la base de donnée de l'entreprise:
+-Optimiser les requêtes
+-Recolter des données et être amené à créer des modèles de prédiction
+-Participer à la gouvernance de la donnée
+
+Créer des petits projets persos
