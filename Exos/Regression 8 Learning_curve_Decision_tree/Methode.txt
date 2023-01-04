@@ -1,0 +1,3 @@
+sklearn.model_selection.learning_curve
+train + test Kfold -> average cross_validation scoring per train
+graphviz
