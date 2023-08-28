@@ -1,0 +1,87 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.6, pytest-7.4.0, pluggy-1.2.0
+rootdir: /root/Simplon_Projects/Exos/Pytest 1 sum
+collected 7 items
+
+test_exercice.py FFFFFFF                                                 [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_calculer_somme_positifs _________________________
+
+    def test_calculer_somme_positifs():
+>       assert calculer_somme([1, 2, 3]) == 6
+E       assert None == 6
+E        +  where None = calculer_somme([1, 2, 3])
+
+test_exercice.py:4: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Hello, World!   [1, 2, 3]
+_________________________ test_calculer_somme_negatifs _________________________
+
+    def test_calculer_somme_negatifs():
+>       assert calculer_somme([-1, -2, -3]) == -6
+E       assert None == -6
+E        +  where None = calculer_somme([-1, -2, -3])
+
+test_exercice.py:8: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Hello, World!   [-1, -2, -3]
+_________________________ test_calculer_somme_melange __________________________
+
+    def test_calculer_somme_melange():
+>       assert calculer_somme([-10, 5, 15, -20, 30]) == 20
+E       assert None == 20
+E        +  where None = calculer_somme([-10, 5, 15, -20, 30])
+
+test_exercice.py:12: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Hello, World!   [-10, 5, 15, -20, 30]
+________________________ test_calculer_somme_liste_vide ________________________
+
+    def test_calculer_somme_liste_vide():
+>       assert calculer_somme([]) == 0
+E       assert None == 0
+E        +  where None = calculer_somme([])
+
+test_exercice.py:16: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Hello, World!   []
+________________________ test_calculer_somme_un_element ________________________
+
+    def test_calculer_somme_un_element():
+>       assert calculer_somme([42]) == 42
+E       assert None == 42
+E        +  where None = calculer_somme([42])
+
+test_exercice.py:19: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Hello, World!   [42]
+______________________ test_calculer_somme_grands_nombres ______________________
+
+    def test_calculer_somme_grands_nombres():
+>       assert calculer_somme([10**6, 2*10**6, 3*10**6]) == 6*10**6
+E       assert None == (6 * (10 ** 6))
+E        +  where None = calculer_somme([1000000, 2000000, 3000000])
+
+test_exercice.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Hello, World!   [1000000, 2000000, 3000000]
+_________________________ test_calculer_somme_decimaux _________________________
+
+    def test_calculer_somme_decimaux():
+>       assert calculer_somme([0.1, 0.2, 0.3]) == 0.6
+E       assert None == 0.6
+E        +  where None = calculer_somme([0.1, 0.2, 0.3])
+
+test_exercice.py:27: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Hello, World!   [0.1, 0.2, 0.3]
+=========================== short test summary info ============================
+FAILED test_exercice.py::test_calculer_somme_positifs - assert None == 6
+FAILED test_exercice.py::test_calculer_somme_negatifs - assert None == -6
+FAILED test_exercice.py::test_calculer_somme_melange - assert None == 20
+FAILED test_exercice.py::test_calculer_somme_liste_vide - assert None == 0
+FAILED test_exercice.py::test_calculer_somme_un_element - assert None == 42
+FAILED test_exercice.py::test_calculer_somme_grands_nombres - assert None == ...
+FAILED test_exercice.py::test_calculer_somme_decimaux - assert None == 0.6
+============================== 7 failed in 0.03s ===============================
